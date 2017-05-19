@@ -23,7 +23,7 @@
 module.exports = function(RED) {
     "use strict";
     var jsonPath = require('JSONPath');
-    
+
     // The main node definition - most things happen in here
     function JSONPathNode(n) {
         // Create a RED node
@@ -57,7 +57,9 @@ module.exports = function(RED) {
                 } else {
                     // Send one message per match result
                     var response = evalResult.map(function (value) {
-                        return {"payload": value};
+                        return Object.assign({}, msg, {
+                            payload: value
+                        });
                     });
                     node.send([response]);
                 }
@@ -71,7 +73,7 @@ module.exports = function(RED) {
             // eg: this.client.disconnect();
         });
     }
-    
+
     // Register the node by name. This must be called before overriding any of the
     // Node functions.
     RED.nodes.registerType("jsonpath",JSONPathNode);
