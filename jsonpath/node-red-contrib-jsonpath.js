@@ -30,18 +30,19 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,n);
 
         // Store local copies of the node configuration (as defined in the .html)
+        this.property = n.property ? n.property : "payload";
         this.expression = n.expression;
         this.split = n.split;
 
         var node = this;
 
         this.on("input", function(msg) {
-            if ( msg.hasOwnProperty("payload") ) {
-                var input = msg.payload;
-                if (typeof msg.payload === "string") {
+            if ( msg.hasOwnProperty(this.property) ) {
+                var input = msg[property];
+                if (typeof msg[property] === "string") {
                     // It's a string: parse it as JSON
                     try {
-                        input = JSON.parse(msg.payload);
+                        input = JSON.parse(msg[property]);
                     } catch (e) {
                         node.warn("The message received is not JSON. Ignoring it.");
                         return;

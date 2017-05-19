@@ -29,6 +29,12 @@
    <!-- (with the 'node-input-' prefix).                                     -->
    <!-- The available icon classes are defined Twitter Bootstrap glyphicons  -->
 
+    <!-- msg property name, empty for payload -->
+    <div class="form-row">
+        <label for="node-input-property"><i class="fa fa-edit"></i> msg.</label>
+        <input type="text" id="node-input-property" placeholder="payload">
+    </div>
+
     <!-- The JSONPath Expression -->
     <div class="form-row">
         <label for="node-input-expression"><i class="fa fa-edit"></i> JSONPath</label>
@@ -137,6 +143,7 @@
         category: 'function',      // the palette category
         color:"#e97b00",
         defaults: {             // defines the editable properties of the node
+            property: {value: "payload"},
             expression: {value:""},
             split: {value:false},
             name: {value:""}
