@@ -30,7 +30,6 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,n);
 
         // Store local copies of the node configuration (as defined in the .html)
-        console.log('Property value: ' + n.property);
         this.property = n.property ? n.property : "payload";
         this.expression = n.expression;
         this.split = n.split;
